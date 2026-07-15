@@ -24,11 +24,15 @@ http://public-ip/
 ### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
 sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
+
 ProxyRequests Off
+
 ProxyPreserveHost On
 
 ProxyPass "/api/" "http://172.31.37.47:5000/"
+
 ProxyPassReverse "/api/" "http://172.31.37.47:5000/"
+
 EOF'
 
 ### Start httpd using systemctl command
@@ -64,5 +68,5 @@ curl -s http://localhost:5000/products | jq
 
 curl -s http://172.31.45.105:5000/products | jq
 
-
+## Enable security group with the port number 5000 from the public instance private ip.
 
