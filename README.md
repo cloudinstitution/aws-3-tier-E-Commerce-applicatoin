@@ -2,20 +2,21 @@
 
 ## Frontend (Web Tier)
 =============
-## update yum repo
+### update yum repo
+
 yum update
-## Install httpd using yum repo
+### Install httpd using yum repo
 yum install httpd -y 
 
-## Start httpd using systemctl command
+### Start httpd using systemctl command
 systemctl restart httpd
 
-## Install git using yum 
+### Install git using yum 
 yum install git -y 
-## git clone the code repository 
+### git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
 
-## Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
+### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
 sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
 ProxyRequests Off
@@ -27,21 +28,21 @@ EOF'
 
 ## BAckend (App Tier)
 =====================
-## create a application folder
+### create a application folder
 mkdir /products
 
-## git clone the code repository 
+### git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
-## copy application files inside the /products
+### copy application files inside the /products
 cp aws-3-tier-E-Commerce-applicatoin/* /products
 
-## Install python3-pip 
+### Install python3-pip 
 sudo yum install python3-pip -y
  
-## pip3 install -r requirements
+### pip3 install -r requirements
 pip3 install -r /products/requirements.txt
 
-## Run python3 app 
+### Run python3 app 
 python3 /products/app.py
 
 
