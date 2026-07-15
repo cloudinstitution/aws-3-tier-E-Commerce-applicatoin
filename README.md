@@ -24,15 +24,16 @@ http://public-ip/
 ### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
 sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
-
 ProxyRequests Off
-
 ProxyPreserveHost On
 
-ProxyPass "/api/" "http://172.31.33.202:5000/"
+# Backend API
+ProxyPass        "/api/"    "http://172.31.33.202:5000/"
+ProxyPassReverse "/api/"    "http://172.31.33.202:5000/"
 
-ProxyPassReverse "/api/" "http://172.31.33.202:5000/"
-
+# Static Images
+ProxyPass        "/static/" "http://172.31.33.202:5000/static/"
+ProxyPassReverse "/static/" "http://172.31.33.202:5000/static/"
 EOF'
 
 ### Start httpd using systemctl command
