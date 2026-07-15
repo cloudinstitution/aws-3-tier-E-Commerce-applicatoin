@@ -19,7 +19,7 @@ git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.
 cp -r aws-3-tier-E-Commerce-applicatoin/frontend/* /var/www/html/
 
 ## Access you forntend application using your public ip
-http://<public-ip>/
+http://public-ip/
 
 ### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
