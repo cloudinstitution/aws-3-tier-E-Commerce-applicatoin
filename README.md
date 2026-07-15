@@ -1,6 +1,6 @@
 # aws-3-tier-E-Commerce-applicatoin
 
-## Frontend (Web Tier)
+## Frontend (Web Tier) - do in on both 2 instances. 
 =============
 ### update yum repo
 
@@ -15,6 +15,11 @@ systemctl restart httpd
 yum install git -y 
 ### git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
+## copy the files under /var/www/html/ 
+cp -r aws-3-tier-E-Commerce-applicatoin/frontend/* /var/www/html/
+
+## Access you forntend application using your public ip
+http://<public-ip>/
 
 ### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
