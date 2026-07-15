@@ -5,7 +5,7 @@
 ### update yum repo
 
 yum update
-### Install httpd using yum repo
+### Install httpd using yum command
 yum install httpd -y 
 
 ### Start httpd using systemctl command
@@ -39,10 +39,12 @@ systemctl restart httpd
 ### create a application folder
 mkdir /products
 
+### Install httpd using yum command
+yum install git -y
 ### git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
 ### copy application files inside the /products
-cp aws-3-tier-E-Commerce-applicatoin/* /products
+cp aws-3-tier-E-Commerce-applicatoin/backend/* /products/
 
 ### Install python3-pip 
 sudo yum install python3-pip -y
@@ -53,7 +55,14 @@ pip3 install -r /products/requirements.txt
 ### Run python3 app 
 python3 /products/app.py
 
+## App output ( check if you see with your instance private ip and replace your proviate ip) 
+ * Running on http://172.31.45.105:5000 
+
 ## check if you applicatoin work locally. (Try it in another window)
 curl -s http://localhost:5000/products | jq
+## check if you applicatoin work locally. (Replace your private ip now)
+
+curl -s http://172.31.45.105:5000/products | jq
+
 
 
