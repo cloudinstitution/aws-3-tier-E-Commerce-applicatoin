@@ -15,24 +15,6 @@ yum install git -y
 ## git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
 
-## BAckend (App Tier)
-=====================
-## create a application folder
-mkdir /products
-
-## git clone the code repository 
-git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
-cp aws-3-tier-E-Commerce-applicatoin/* /products
-
-## Install python3-pip 
-sudo yum install python3-pip -y
- 
-## pip3 install -r requirements
-pip3 install -r requirements.txt
-
-## Run python3 app 
-python3 app.py
-
 ## Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
 sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
@@ -42,4 +24,24 @@ ProxyPreserveHost On
 ProxyPass "/api/" "http://172.31.37.47:5000/"
 ProxyPassReverse "/api/" "http://172.31.37.47:5000/"
 EOF'
+
+## BAckend (App Tier)
+=====================
+## create a application folder
+mkdir /products
+
+## git clone the code repository 
+git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
+## copy application files inside the /products
+cp aws-3-tier-E-Commerce-applicatoin/* /products
+
+## Install python3-pip 
+sudo yum install python3-pip -y
+ 
+## pip3 install -r requirements
+pip3 install -r /products/requirements.txt
+
+## Run python3 app 
+python3 /products/app.py
+
 
