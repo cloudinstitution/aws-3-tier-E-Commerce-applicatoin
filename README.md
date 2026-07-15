@@ -29,9 +29,9 @@ ProxyRequests Off
 
 ProxyPreserveHost On
 
-ProxyPass "/api/" "http://172.31.37.47:5000/"
+ProxyPass "/api/" "http://172.31.33.202:5000/"
 
-ProxyPassReverse "/api/" "http://172.31.37.47:5000/"
+ProxyPassReverse "/api/" "http://172.31.33.202:5000/"
 
 EOF'
 
@@ -48,7 +48,7 @@ yum install git -y
 ### git clone the code repository 
 git clone https://github.com/cloudinstitution/aws-3-tier-E-Commerce-applicatoin.git
 ### copy application files inside the /products
-cp aws-3-tier-E-Commerce-applicatoin/backend/* /products/
+cp -r aws-3-tier-E-Commerce-applicatoin/backend/* /products/
 
 ### Install python3-pip 
 sudo yum install python3-pip -y
