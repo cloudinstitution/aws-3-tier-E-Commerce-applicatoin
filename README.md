@@ -50,4 +50,7 @@ pip3 install -r /products/requirements.txt
 ### Run python3 app 
 python3 /products/app.py
 
+## check if you applicatoin work locally. (Try it in another window)
+curl -s http://localhost:5000/products | jq
+
 
