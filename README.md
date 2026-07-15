@@ -26,7 +26,7 @@ ProxyPass "/api/" "http://172.31.37.47:5000/"
 ProxyPassReverse "/api/" "http://172.31.37.47:5000/"
 EOF'
 
-## BAckend (App Tier)
+## Backend (App Tier)
 =====================
 ### create a application folder
 mkdir /products
