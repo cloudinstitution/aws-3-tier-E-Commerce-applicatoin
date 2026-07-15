@@ -31,6 +31,9 @@ ProxyPass "/api/" "http://172.31.37.47:5000/"
 ProxyPassReverse "/api/" "http://172.31.37.47:5000/"
 EOF'
 
+### Start httpd using systemctl command
+systemctl restart httpd
+
 ## Backend (App Tier)
 =====================
 ### create a application folder
