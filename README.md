@@ -23,14 +23,27 @@ http://public-ip/
 
 ### Add proxy in apache instance  (Change 172.31.37.47 with the app-private instnce private-ip)
 
-sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
+sudo tee /etc/httpd/conf.d/backend-proxy.conf > /dev/null <<'EOF'
 ProxyRequests Off
 ProxyPreserveHost On
-ProxyPass        "/api/"    "http://172.31.33.202:5000/"
-ProxyPassReverse "/api/"    "http://172.31.33.202:5000/"
-ProxyPass        "/static/" "http://172.31.33.202:5000/static/"
-ProxyPassReverse "/static/" "http://172.31.33.202:5000/static/"
-EOF'
+
+<Proxy "balancer://backendcluster">
+
+    BalancerMember "http://10.0.0.153:5000" route=server1
+    BalancerMember "http://10.0.0.196:5000" route=server2
+
+    ProxySet lbmethod=byrequests
+
+</Proxy>
+
+ProxyPass        "/api/"    "balancer://backendcluster/"
+ProxyPassReverse "/api/"    "balancer://backendcluster/"
+
+ProxyPass        "/static/" "balancer://backendcluster/static/"
+ProxyPassReverse "/static/" "balancer://backendcluster/static/"
+
+EOF
+
 
 ### Start httpd using systemctl command
 systemctl restart httpd
