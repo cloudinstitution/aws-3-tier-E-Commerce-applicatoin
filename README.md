@@ -26,12 +26,8 @@ http://public-ip/
 sudo sh -c 'cat > /etc/httpd/conf.d/backend-proxy.conf <<EOF
 ProxyRequests Off
 ProxyPreserveHost On
-
-# Backend API
 ProxyPass        "/api/"    "http://172.31.33.202:5000/"
 ProxyPassReverse "/api/"    "http://172.31.33.202:5000/"
-
-# Static Images
 ProxyPass        "/static/" "http://172.31.33.202:5000/static/"
 ProxyPassReverse "/static/" "http://172.31.33.202:5000/static/"
 EOF'
